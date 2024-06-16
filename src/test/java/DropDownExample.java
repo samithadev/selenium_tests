@@ -53,6 +53,26 @@ public class DropDownExample {
     }
 
     //2) Google search - pick a value from suggestions
+    @Test
+    public void googleSearchDropDownTest() throws InterruptedException {
+
+        driver.get("https://www.google.com/");
+        driver.manage().window().maximize();
+        WebElement googleSearch = driver.findElement(By.xpath("//textarea[@class='gLFyf']"));
+        googleSearch.sendKeys("palitha");
+        Thread.sleep(2000);
+
+        List<WebElement> googlesearchList = googleSearch.findElements(By.xpath("//ul[@role='listbox']/li//div[@class='wM6W7d']"));
+        System.out.println(googlesearchList.size());;
+        for(WebElement element: googlesearchList){
+            if(element.getText().contains("Palitha Thewarapperuma")){
+                element.click();
+                break;
+            }
+        }
+
+    }
+
     //3) Handle hidden auto suggestions Drop Down and search using DOM debugger trick
 
 }
